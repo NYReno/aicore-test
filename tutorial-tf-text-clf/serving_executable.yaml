@@ -1,7 +1,7 @@
 apiVersion: ai.sap.com/v1alpha1
 kind: ServingTemplate
 metadata:
-  name: tf-text-clf-serve
+  name: rds-tf-text-clf-serve
   annotations:
     scenarios.ai.sap.com/description: "Tensorflow text classification"
     scenarios.ai.sap.com/name: "movie-review-clf"
@@ -22,10 +22,10 @@ spec:
     spec: |
       predictor:
         imagePullSecrets:
-          - name: docker-registry-secret
+          - name: rds-doc-secret
         containers:
         - name: kfserving-container
-          image: "docker.io/YOUR_DOCKER_USER_NAME/movie-review-clf-serve:0.0.1"
+          image: "docker.io/rdssap/movie-review-clf-serve:0.0.1"
           ports:
             - containerPort: 9001
               protocol: TCP
